@@ -7,8 +7,6 @@ class Fighter {
     this.dexterity = dexterity;
     this.life = MAX_LIFE;
     this.image = image;
-    this.weapon = null;
-    this.shield = null;
   }
 
   /**
@@ -21,26 +19,20 @@ class Fighter {
     defender.life = Math.max(defender.life - damages, 0);
   }
 
-
   /**
    * Calculate the value of the defense
    * @returns
    */
   getDamage() {
-    return this.weapon ?
-      this.strength + this.weapon.damage :
-      this.strength;
+    return this.strength;
   }
-
 
   /**
    * Calculate the value of the attack
    * @returns
    */
   getDefense() {
-    return this.shield ?
-      this.dexterity + this.shield.protection :
-      this.dexterity;
+    return this.dexterity;
   }
 
   /**
@@ -62,3 +54,28 @@ class Fighter {
   }
 }
 
+class Monster extends Fighter{}
+
+class Hero extends Fighter {
+    weapon = null;
+    shield = null;
+
+    /**
+   * Calculate the value of the defense
+   * @returns
+   */
+  getDamage() {
+    return this.weapon ?
+      this.strength + this.weapon.damage :
+      this.strength;
+  }
+
+  /**
+   * Calculate the value of the attack
+   * @returns
+   */
+  getDefense() {
+    return this.shield ?
+      this.dexterity + this.shield.protection :
+      this.dexterity;
+}}
